@@ -1,9 +1,8 @@
-from django.urls import path
-from .views import BrandListCreateView, BrandDetailView, CarListCreateView, CarDetailView
+from rest_framework.routers import DefaultRouter
+from .views import BrandViewSet, CarViewSet
 
-urlpatterns = [
-    path('brands/', BrandListCreateView.as_view()),
-    path('brands/<int:pk>/', BrandDetailView.as_view()),
-    path('cars/', CarListCreateView.as_view()),
-    path('cars/<int:pk>/', CarDetailView.as_view()),
-]
+router = DefaultRouter()
+router.register('brands', BrandViewSet)
+router.register('cars', CarViewSet)
+
+urlpatterns = router.urls
